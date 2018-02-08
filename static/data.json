@@ -1,0 +1,39 @@
+[
+  {
+    "guid": "001",
+    "index": 0,
+    "depth": 0,
+    "content": "Chapter 1",
+    "children": [
+      {
+        "guid": "002",
+        "index": 0,
+        "depth": 1,
+        "content": "Environment Setup",
+        "children": [
+          {
+            "guid": "003",
+            "index": 0,
+            "depth": 2,
+            "content": "IDEs and Text Editors",
+            "children": []
+          }
+        ]
+      },
+      {
+        "guid": "004",
+        "index": 1,
+        "depth": 1,
+        "content": "Helpful Packages",
+        "children": []
+      }
+    ]
+  },
+  {
+    "guid": "005",
+    "index": 0,
+    "depth": 0,
+    "content": "Chapter 2",
+    "children": []
+  }
+]

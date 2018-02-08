@@ -14,71 +14,28 @@ const Wrapper = styled.div`
 class Document extends Component {
   constructor() {
     super()
+    this.state = { nodes: [] }
+  }
+  componentDidMount() {
+    const f = fetch("/static/data2.json").then(res => res.text())
+    f.then(res => {
+      const data = JSON.parse(res)
+      const map = data.map(node => {
+        return <Node 
+          key = { node.guid } 
+          content = { node.content } 
+          depth = { node.depth }
+        />
+      })
+      this.setState({
+        nodes: map
+      })  
+    })
   }
 	render() {
     return (
       <Wrapper>
-        <Node 
-          key = { "001" }
-          children = {[ 
-            <Node 
-              key = { "002" }
-              children = { [
-                <Node 
-                  key = { "003" }
-                  parent = { this }
-                  children = { [] }
-                  index = { 1 }
-                  depth = { 2 }
-                  content = "Mac"
-                />                  
-              ]}
-              index = { 0 }
-              depth = { 1 }
-              content = "Environment Setup"
-            />,
-            <Node 
-              key = { "004" }
-              children = { [] }
-              index = { 1 }
-              depth = { 1 }
-              content = "Helpful Packages"
-            />             
-          ]}
-          index = { 0 }
-          depth = { 0 }
-          content = "Chapter 1: Introduction"
-        />
-        <Node 
-          key = { "001" }
-          children = {[ 
-            <Node 
-              key = { "002" }
-              children = { [
-                <Node 
-                  key = { "003" }
-                  children = { [] }
-                  index = { 1 }
-                  depth = { 2 }
-                  content = "Hello, World"
-                />                  
-              ]}
-              index = { 0 }
-              depth = { 1 }
-              content = "First Program"
-            />,
-            <Node 
-              key = { "004" }
-              children = { [] }
-              index = { 1 }
-              depth = { 1 }
-              content = "Loops and Iteration"
-            />             
-          ]}
-          index = { 0 }
-          depth = { 0 }
-          content = "Chapter 2: First Steps"
-        />
+        { this.state.nodes }
       </Wrapper>
     )
   }

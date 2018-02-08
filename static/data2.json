@@ -1,0 +1,44 @@
+[
+  {
+    "guid": "001",
+    "index": 0,
+    "depth": 0,
+    "content": "Chapter 1",
+    "parent": null
+  },
+  {
+    "guid": "002",
+    "index": 0,
+    "depth": 1,
+    "content": "Environment Setup",
+    "parent": "001"
+  },
+  {
+    "guid": "003",
+    "index": 0,
+    "depth": 2,
+    "content": "IDEs and Text Editors",
+    "parent": "001"    
+  },
+  {
+    "guid": "004",
+    "index": 0,
+    "depth": 0,
+    "content": "Chapter 2",
+    "parent": null
+  },
+  {
+    "guid": "005",
+    "index": 0,
+    "depth": 1,
+    "content": "Getting Started",
+    "parent": "001"
+  },
+  {
+    "guid": "006",
+    "index": 0,
+    "depth": 1,
+    "content": "Your First Program",
+    "parent": "001"    
+  }
+]
