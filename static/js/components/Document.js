@@ -7,8 +7,6 @@ import NodeUtil from "../utils/NodeUtil"
 
 const Wrapper = styled.div`
   margin: 1em;
-  width: 30em;
-  margin: 0 auto;
 `
 
 class Document extends Component {

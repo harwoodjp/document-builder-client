@@ -22,7 +22,27 @@ function mapNodeToComponent(node) {
   />
 }
 
+function hasChildren(node) {
+  if (node.props.length > 0) {
+    return true
+  } else {
+    return false
+  }
+}
+
+function dummyNode(parent) {
+  return  <Node
+    key = { "random" }
+    index = { parent.props.children.length }
+    depth = { parent.props.depth + 1 }
+    content = { "I'm a new node." }
+    children = { [] }
+    />
+}
+
 module.exports = {
   printChildren,
-  mapNodeToComponent
+  mapNodeToComponent,
+  hasChildren,
+  dummyNode
 }

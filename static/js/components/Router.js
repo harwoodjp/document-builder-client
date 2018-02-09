@@ -7,7 +7,9 @@ import Document from "./Document"
 
 class Router extends Component {
 	render() {
-		return <Document />
+		return (
+			<Document />
+		)
 	}
 }
 
