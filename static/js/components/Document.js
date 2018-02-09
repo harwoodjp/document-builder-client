@@ -3,12 +3,12 @@ import ReactDOM from "react-dom"
 import styled from "styled-components"
 
 import Node from "./Node"
+import NodeUtil from "../utils/NodeUtil"
 
 const Wrapper = styled.div`
   margin: 1em;
   width: 30em;
   margin: 0 auto;
-  
 `
 
 class Document extends Component {
@@ -17,19 +17,13 @@ class Document extends Component {
     this.state = { nodes: [] }
   }
   componentDidMount() {
-    const f = fetch("/static/data2.json").then(res => res.text())
+    const f = fetch("/static/data.json").then(res => res.text())
     f.then(res => {
-      const data = JSON.parse(res)
-      const map = data.map(node => {
-        return <Node 
-          key = { node.guid } 
-          content = { node.content } 
-          depth = { node.depth }
-        />
+      const nodes = JSON.parse(res)
+      const map = nodes.map(node => {
+        return NodeUtil.mapNodeToComponent(node)
       })
-      this.setState({
-        nodes: map
-      })  
+      this.setState({ nodes: map })
     })
   }
 	render() {

@@ -34,6 +34,29 @@
     "index": 0,
     "depth": 0,
     "content": "Chapter 2",
-    "children": []
+    "children": [
+      {
+        "guid": "006",
+        "index": 0,
+        "depth": 1,
+        "content": "Your First Program",
+        "children": [
+          {
+            "guid": "007",
+            "index": 0,
+            "depth": 2,
+            "content": "Hello, World",
+            "children": []
+          }
+        ]
+      },
+      {
+        "guid": "008",
+        "index": 0,
+        "depth": 1,
+        "content": "Your Second Program",
+        "children": []        
+      }
+    ]
   }
 ]
