@@ -36,15 +36,11 @@ class Node extends Component {
   }
 
   addNode() {
-    console.log(this)
-    if (this.props.children.length > 0) {
-      this.props.children.push(NodeUtil.dummyNode(this))            
-    } else {
-      this.props.children.push(NodeUtil.dummyNodeComponent(this))            
-    }
-    let joined = this.state.children.concat(NodeUtil.dummyNodeComponent(this))
-    console.log(joined)
-    this.setState({children: joined })
+    const newNode = NodeUtil.dummyNode(this)
+    this.props.children.push(newNode)
+    const children = this.state.children.concat(NodeUtil.mapNodeToComponent(newNode))
+    this.setState({children: children })
+    console.log(this)    
   }
 	render() {
     return (

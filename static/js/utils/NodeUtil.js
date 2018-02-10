@@ -15,6 +15,7 @@ function printChildren(node) {
 function mapNodeToComponent(node) {
   return <Node
     key = { node.guid }
+    guid = { node.guid }
     index = { node.index }
     depth = { node.depth }
     content = { node.content }
@@ -44,9 +45,11 @@ function dummyNode(parent) {
 }
 
 function dummyNodeComponent(parent) {
+  const randomGuid = Math.floor(Math.random() * 9999)  
   return <Node
     dummy = { true }
-    key = { Math.floor(Math.random() * 9999) }
+    key = { randomGuid }
+    guid = { randomGuid }
     index = { parent.props.children.length }
     depth = { parent.props.depth + 1 }
     content = { "I'm a new node." }

@@ -8,13 +8,25 @@ import NodeUtil from "../utils/NodeUtil"
 const Wrapper = styled.div`
   margin: 1em;
 `
+const DocumentTools = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+`
+const SaveButton = styled.button`
+  background: transparent;
+  cursor: pointer;
+  padding: .25em;
+`
 
 class Document extends Component {
   constructor() {
     super()
     this.state = { nodes: [] }
   }
-  
+  saveNodes() {
+    console.log(this.state)
+  }
   componentDidMount() {
     const f = fetch("/static/data.json").then(res => res.text())
     f.then(res => {
@@ -33,6 +45,9 @@ class Document extends Component {
 	render() {
     return (
       <Wrapper>
+        <DocumentTools>
+          <SaveButton onClick={ () => this.saveNodes() }>Save</SaveButton>
+        </DocumentTools>
         { this.state.nodes }
       </Wrapper>
     )
