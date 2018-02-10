@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import ReactDOM from "react-dom"
+import { BrowserRouter as BrowserRouter, Route, Link } from "react-router-dom"
 
 import Document from "./Document"
 
@@ -8,7 +9,9 @@ import Document from "./Document"
 class Router extends Component {
 	render() {
 		return (
-			<Document />
+			<BrowserRouter>
+				<Route exact path="/" component={ Document } />
+			</BrowserRouter>
 		)
 	}
 }

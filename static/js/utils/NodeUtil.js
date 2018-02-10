@@ -31,8 +31,22 @@ function hasChildren(node) {
 }
 
 function dummyNode(parent) {
-  return  <Node
-    key = { "random" }
+  return (
+    {
+      dummy: true,
+      guid: Math.floor(Math.random() * 9999),
+      index: parent.props.children.length,
+      depth: parent.props.depth + 1,
+      content: "I'm a new node.",
+      children: []
+    }
+  )
+}
+
+function dummyNodeComponent(parent) {
+  return <Node
+    dummy = { true }
+    key = { Math.floor(Math.random() * 9999) }
     index = { parent.props.children.length }
     depth = { parent.props.depth + 1 }
     content = { "I'm a new node." }
@@ -44,5 +58,6 @@ module.exports = {
   printChildren,
   mapNodeToComponent,
   hasChildren,
-  dummyNode
+  dummyNode,
+  dummyNodeComponent
 }

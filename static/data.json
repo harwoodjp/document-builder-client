@@ -1,18 +1,18 @@
 [
   {
-    "guid": "001",
+    "guid": 1,
     "index": 0,
     "depth": 0,
     "content": "Chapter 1",
     "children": [
       {
-        "guid": "002",
+        "guid": 2,
         "index": 0,
         "depth": 1,
         "content": "Environment Setup",
         "children": [
           {
-            "guid": "003",
+            "guid": 3,
             "index": 0,
             "depth": 2,
             "content": "IDEs and Text Editors",
@@ -21,7 +21,7 @@
         ]
       },
       {
-        "guid": "004",
+        "guid": 4,
         "index": 1,
         "depth": 1,
         "content": "Helpful Packages",
@@ -30,19 +30,19 @@
     ]
   },
   {
-    "guid": "005",
+    "guid": 5,
     "index": 0,
     "depth": 0,
     "content": "Chapter 2",
     "children": [
       {
-        "guid": "006",
+        "guid": 6,
         "index": 0,
         "depth": 1,
         "content": "Your First Program",
         "children": [
           {
-            "guid": "007",
+            "guid": 7,
             "index": 0,
             "depth": 2,
             "content": "Hello, World",
@@ -51,8 +51,8 @@
         ]
       },
       {
-        "guid": "008",
-        "index": 0,
+        "guid": 8,
+        "index": 1,
         "depth": 1,
         "content": "Your Second Program",
         "children": []        

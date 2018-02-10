@@ -35,13 +35,16 @@ class Node extends Component {
     this.setState({ children: children })
   }
 
-  componentDidUpdate() {
-    console.log("updated")
-  }
-
   addNode() {
-    this.props.children.push(NodeUtil.dummyNode(this))
-    this.setState({children: this.props.children })
+    console.log(this)
+    if (this.props.children.length > 0) {
+      this.props.children.push(NodeUtil.dummyNode(this))            
+    } else {
+      this.props.children.push(NodeUtil.dummyNodeComponent(this))            
+    }
+    let joined = this.state.children.concat(NodeUtil.dummyNodeComponent(this))
+    console.log(joined)
+    this.setState({children: joined })
   }
 	render() {
     return (

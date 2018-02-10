@@ -14,6 +14,7 @@ class Document extends Component {
     super()
     this.state = { nodes: [] }
   }
+  
   componentDidMount() {
     const f = fetch("/static/data.json").then(res => res.text())
     f.then(res => {
@@ -24,6 +25,11 @@ class Document extends Component {
       this.setState({ nodes: map })
     })
   }
+
+  componentDidUpdate() {
+    console.log("Document has updated.")
+  }
+
 	render() {
     return (
       <Wrapper>
