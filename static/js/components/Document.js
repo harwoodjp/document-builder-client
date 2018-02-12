@@ -7,7 +7,7 @@ import NodeUtil from "../utils/NodeUtil"
 import UuidUtil from "../utils/UuidUtil"
 
 const Wrapper = styled.div`
-  margin: 1em;
+  margin: 2em;
 `
 const DocumentTools = styled.div`
   display: flex;
@@ -44,7 +44,7 @@ class Document extends Component {
   }
 
   componentDidMount() {
-    const f = fetch("/static/data/data.json").then(res => res.text())
+    const f = fetch("/static/data/data2.json").then(res => res.text())
     f.then(res => {
       const nodes = JSON.parse(res)
       this.jsonRepresentation = JSON.stringify(nodes)

@@ -23,11 +23,19 @@ const AddButton = styled.button`
   background: transparent;
   cursor: pointer;
   display: none;
+  span {
+    position: relative;
+    top: 3px;
+  }
 `
 const EditButton = styled.button`
   background: transparent;
   cursor: pointer;
   display: none;
+  span {
+    position: relative;
+    top: 1px;
+  }  
 `
 
 class Node extends Component {
@@ -71,8 +79,10 @@ class Node extends Component {
       <Wrapper style = { { marginLeft: `${this.props.depth * 2}em` }}>
         {this.state.content} 
           <ActionButtons>
-            <AddButton onClick = { () => this.addNode(this) }>+</AddButton> 
-            <EditButton onClick = { () => this.editNode(this) }>&#9998;</EditButton>
+            <AddButton onClick = { () => this.addNode(this) }><span>&#8627;</span></AddButton> 
+            {this.state.content != null &&
+              <EditButton onClick = { () => this.editNode(this) }><span>&#9998;</span></EditButton>
+            }
           </ActionButtons>
         {this.state.children}
       </Wrapper>
