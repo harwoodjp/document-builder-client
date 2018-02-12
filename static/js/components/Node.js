@@ -14,7 +14,17 @@ const Wrapper = styled.div`
     }
   }
 `
+
+const ActionButtons = styled.div`
+  margin-left: .5em;
+  display: inline;
+`
 const AddButton = styled.button`
+  background: transparent;
+  cursor: pointer;
+  display: none;
+`
+const EditButton = styled.button`
   background: transparent;
   cursor: pointer;
   display: none;
@@ -23,7 +33,10 @@ const AddButton = styled.button`
 class Node extends Component {
   constructor() {
     super()
-    this.state = { children: [] }
+    this.state = {
+      content: "",
+      children: [] 
+    }
   }
 
   componentDidMount() {
@@ -33,7 +46,10 @@ class Node extends Component {
         children.push(NodeUtil.mapNodeToComponent(child))
       })
     }
-    this.setState({ children: children })
+    this.setState({
+      content: this.props.content,
+      children: children 
+    })
   }
 
   addNode(parentNode) {
@@ -43,10 +59,21 @@ class Node extends Component {
     window.actions.updateJsonRepresentation(parentNode, newNode)
   }
 
+  editNode(node) {
+    const newContent = prompt("Set content to...")
+    if (newContent != null) {
+      this.setState({ content: newContent })
+    }
+  }
+
 	render() {
     return (
       <Wrapper style = { { marginLeft: `${this.props.depth * 2}em` }}>
-        {this.props.content} <AddButton onClick = { () => this.addNode(this) }>+</AddButton>
+        {this.state.content} 
+          <ActionButtons>
+            <AddButton onClick = { () => this.addNode(this) }>+</AddButton> 
+            <EditButton onClick = { () => this.editNode(this) }>&#9998;</EditButton>
+          </ActionButtons>
         {this.state.children}
       </Wrapper>
     )

@@ -31,19 +31,16 @@ class Document extends Component {
   }
 
   saveNodes() {
-    console.log(JSON.parse(this.jsonRepresentation))
+    console.log(this.jsonRepresentation)
   }
 
   updateJsonRepresentation(parentNode, newNode) {
     const parentUuid = parentNode.props.uuid
     const nodes = JSON.parse(this.jsonRepresentation)
-
     nodes.forEach(node => {
       NodeUtil.findNodeByUuidAndInsertChild(node, parentUuid, newNode)
     })
-    
     this.jsonRepresentation = JSON.stringify(nodes)
-    console.log(this.jsonRepresentation)
   }
 
   componentDidMount() {
