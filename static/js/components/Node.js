@@ -25,6 +25,7 @@ class Node extends Component {
     super()
     this.state = { children: [] }
   }
+
   componentDidMount() {
     let children = []
     if (this.props.children.length > 0) {
@@ -35,17 +36,17 @@ class Node extends Component {
     this.setState({ children: children })
   }
 
-  addNode() {
-    const newNode = NodeUtil.dummyNode(this)
-    this.props.children.push(newNode)
-    const children = this.state.children.concat(NodeUtil.mapNodeToComponent(newNode))
+  addNode(parentNode) {
+    const newNode = NodeUtil.dummyNode(parentNode)
+    const children = parentNode.state.children.concat(NodeUtil.mapNodeToComponent(newNode))
     this.setState({children: children })
-    console.log(this)    
+    window.actions.updateJsonRepresentation(parentNode, newNode)
   }
+
 	render() {
     return (
       <Wrapper style = { { marginLeft: `${this.props.depth * 2}em` }}>
-        {this.props.content} <AddButton onClick = { () => this.addNode() }>+</AddButton>
+        {this.props.content} <AddButton onClick = { () => this.addNode(this) }>+</AddButton>
         {this.state.children}
       </Wrapper>
     )

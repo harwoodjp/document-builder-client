@@ -4,6 +4,7 @@ import styled from "styled-components"
 
 import Node from "./Node"
 import NodeUtil from "../utils/NodeUtil"
+import UuidUtil from "../utils/UuidUtil"
 
 const Wrapper = styled.div`
   margin: 1em;
@@ -22,24 +23,39 @@ const SaveButton = styled.button`
 class Document extends Component {
   constructor() {
     super()
-    this.state = { nodes: [] }
+    this.state = { nodes: [], nodesJson: "" }
+    this.jsonRepresentation = ""
+    window.actions = { 
+      updateJsonRepresentation: this.updateJsonRepresentation.bind(this)
+    }
   }
+
   saveNodes() {
-    console.log(this.state)
+    console.log(JSON.parse(this.jsonRepresentation))
   }
+
+  updateJsonRepresentation(parentNode, newNode) {
+    const parentUuid = parentNode.props.uuid
+    const nodes = JSON.parse(this.jsonRepresentation)
+
+    nodes.forEach(node => {
+      NodeUtil.findNodeByUuidAndInsertChild(node, parentUuid, newNode)
+    })
+    
+    this.jsonRepresentation = JSON.stringify(nodes)
+    console.log(this.jsonRepresentation)
+  }
+
   componentDidMount() {
-    const f = fetch("/static/data.json").then(res => res.text())
+    const f = fetch("/static/data/data.json").then(res => res.text())
     f.then(res => {
       const nodes = JSON.parse(res)
+      this.jsonRepresentation = JSON.stringify(nodes)
       const map = nodes.map(node => {
         return NodeUtil.mapNodeToComponent(node)
       })
       this.setState({ nodes: map })
     })
-  }
-
-  componentDidUpdate() {
-    console.log("Document has updated.")
   }
 
 	render() {

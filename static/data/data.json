@@ -1,0 +1,27 @@
+[
+  {
+    "uuid": "c52b715e-2973-46ec-8ee1-16891c9b0c49",
+    "index": 0,
+    "depth": 0,
+    "content": "Root Node 1",
+    "children": []
+  },
+  {
+    "uuid": "d521235e-297v-v6ec-8ve1-168v1c9b0c49",
+    "index": 0,
+    "depth": 0,
+    "content": "Root Node 2",
+    "children": [
+
+      {
+        "uuid": "e521235e-297v-v6ec-8ve1-168v1c9b0c49",
+        "index": 0,
+        "depth": 1,
+        "content": "Chapter 1",
+        "children": []
+      }
+
+    ]
+  }
+
+]
