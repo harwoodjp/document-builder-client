@@ -25,16 +25,16 @@ function findNodeByUuid(parentNode, uuid, action) {
   }
 }
 
-function findNodeByUuidAndInsertChild(parentNode, uuid, newNode) {
-  if (parentNode.uuid === uuid) {
-    parentNode.children.push(newNode) // console.log(`inserted node under ${parent.content}`)
-  } else {
-    if (parentNode.children.length > 0) {
-      parentNode.children.forEach(childNode => {
-        findNodeByUuidAndInsertChild(childNode, uuid, newNode)
-      })
-    }
-  }
+function findNodeParentByUuid(node, uuid, action) {
+  node.children.forEach(child => {
+    if (child.uuid == uuid) {
+      action(node)
+    } 
+  })
+  node.children.forEach(child => {
+    findNodeParentByUuid(child, uuid, action)
+  })
+
 }
 
 function mapNodeToComponent(node) {
@@ -98,7 +98,7 @@ function dummyNodeComponent(parentNode) {
 module.exports = {
   printChildren,
   findNodeByUuid,
-  findNodeByUuidAndInsertChild,
+  findNodeParentByUuid,  
   mapNodeToComponent,
   mapComponentToNode,  
   hasChildren,

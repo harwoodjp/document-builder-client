@@ -49,6 +49,16 @@ class Document extends Component {
             foundNode.content = newNode.content
           })
           break
+        case "DELETE":
+          NodeUtil.findNodeParentByUuid(node, parentUuid, foundParentNode => {
+            foundParentNode.children.forEach(childNode => {
+              if (childNode.uuid == parentUuid) {
+                foundParentNode.children.pop(childNode)
+              }
+            })
+            console.log()
+          })      
+          break
       }
     })
     this.jsonRepresentation = JSON.stringify(nodes)

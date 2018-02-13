@@ -81,8 +81,8 @@ class Node extends Component {
   }
 
   deleteNode(thisNode) {
-    console.log(thisNode)
     this.setState({ active: false })
+    window.actions.updateJsonRepresentation(thisNode, null, "DELETE")        
   }
 
 	render() {
