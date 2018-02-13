@@ -13,14 +13,25 @@ function printChildren(node) {
   }
 }
 
-function findNodeByUuidAndInsertChild(parentNode, uuid, newNode) {
+function findNodeByUuid(parentNode, uuid, action) {
   if (parentNode.uuid === uuid) {
-    parentNode.children.push(newNode)
-    // console.log(`inserted node under ${parent.content}`)
+    action(parentNode)
   } else {
     if (parentNode.children.length > 0) {
-      parentNode.children.forEach(child => {
-        findNodeByUuidAndInsertChild(child, uuid, newNode)
+      parentNode.children.forEach(childNode => {
+        findNodeByUuid(childNode, uuid, action)
+      })
+    }
+  }
+}
+
+function findNodeByUuidAndInsertChild(parentNode, uuid, newNode) {
+  if (parentNode.uuid === uuid) {
+    parentNode.children.push(newNode) // console.log(`inserted node under ${parent.content}`)
+  } else {
+    if (parentNode.children.length > 0) {
+      parentNode.children.forEach(childNode => {
+        findNodeByUuidAndInsertChild(childNode, uuid, newNode)
       })
     }
   }
@@ -35,6 +46,17 @@ function mapNodeToComponent(node) {
     content = { node.content }
     children = { node.children }
   />
+}
+
+function mapComponentToNode(component) {
+  return {
+    key: component.props.uuid,
+    uuid: component.props.uuid,
+    index: component.props.index,
+    depth: component.props.depth,
+    content: component.props.content,
+    children: component.props.children
+  }
 }
 
 function hasChildren(node) {
@@ -75,8 +97,10 @@ function dummyNodeComponent(parentNode) {
 
 module.exports = {
   printChildren,
+  findNodeByUuid,
   findNodeByUuidAndInsertChild,
   mapNodeToComponent,
+  mapComponentToNode,  
   hasChildren,
   dummyNode,
   dummyNodeComponent

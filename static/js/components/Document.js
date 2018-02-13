@@ -34,11 +34,22 @@ class Document extends Component {
     console.log(this.jsonRepresentation)
   }
 
-  updateJsonRepresentation(parentNode, newNode) {
+  updateJsonRepresentation(parentNode, newNode, ACTION_TYPE) {
     const parentUuid = parentNode.props.uuid
     const nodes = JSON.parse(this.jsonRepresentation)
     nodes.forEach(node => {
-      NodeUtil.findNodeByUuidAndInsertChild(node, parentUuid, newNode)
+      switch(ACTION_TYPE) {
+        case "INSERT":
+          NodeUtil.findNodeByUuid(node, parentUuid, parentNode => {
+            parentNode.children.push(newNode)
+          })
+          break
+        case "UPDATE":
+          NodeUtil.findNodeByUuid(node, newNode.uuid, foundNode => {
+            foundNode.content = newNode.content
+          })
+          break
+      }
     })
     this.jsonRepresentation = JSON.stringify(nodes)
   }

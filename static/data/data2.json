@@ -1,7 +1,1 @@
-[
-  {
-    "uuid": "c52b715e-2973-46ec-8ee1-16891c9b0c49",
-    "depth": -1,
-    "children": []
-  }
-]
+[{"uuid":"c52b715e-2973-46ec-8ee1-16891c9b0c49","depth":-1,"children":[{"dummy":true,"key":"3bbff2d7-8d10-459c-97f4-505bc8301d1a","uuid":"3bbff2d7-8d10-459c-97f4-505bc8301d1a","index":0,"depth":0,"content":"Root 1","children":[{"dummy":true,"key":"05df6d8e-bd02-4b70-b6b4-b6d8a1f32e95","uuid":"05df6d8e-bd02-4b70-b6b4-b6d8a1f32e95","index":0,"depth":1,"content":"Leaf 1","children":[]}]},{"dummy":true,"key":"b5174d1a-2cba-41ef-9a11-389f4bca0bd5","uuid":"b5174d1a-2cba-41ef-9a11-389f4bca0bd5","index":0,"depth":0,"content":"Root 2","children":[{"dummy":true,"key":"c20dae2c-b295-4c30-b309-dacfbedb5106","uuid":"c20dae2c-b295-4c30-b309-dacfbedb5106","index":0,"depth":1,"content":"Leaf 2","children":[]}]},{"dummy":true,"key":"3868df95-fd46-42f3-a9d2-27897c186ea2","uuid":"3868df95-fd46-42f3-a9d2-27897c186ea2","index":0,"depth":0,"content":"Root 3","children":[{"dummy":true,"key":"6b17d3a0-76ed-452c-9fda-4f5b8f2b49af","uuid":"6b17d3a0-76ed-452c-9fda-4f5b8f2b49af","index":0,"depth":1,"content":"Leaf 3","children":[]}]}]}]
