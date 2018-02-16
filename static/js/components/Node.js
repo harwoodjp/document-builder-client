@@ -1,9 +1,36 @@
 import React, { Component } from "react"
 import styled from "styled-components"
 
-import NodeUtil from "../utils/NodeUtil"
+import UuidUtil from "../utils/UuidUtil"
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  &:hover {
+    button {
+      display: inline;
+    }
+  }
+`
+
+const ActionButton = styled.button`
+  background-color: transparent;
+  span {
+  }
+`
+
+const Content = styled.div`
+  display: inline;
+  margin-right: 1em;
+`
+
+const DepthIcon = styled.span`
+  position: relative;
+  top: 3px;
+`
+
+const EditIcon = styled.span`
+  position: relative;
+  top: 1px;
+`
 
 class Node extends Component {
 
@@ -31,7 +58,26 @@ class Node extends Component {
 	render() {
 		return (
       <Wrapper style = {{marginLeft: `2em`}}>
-        {this.props.content} <span onClick = {() => window.actions.updateTreeRepresentation(this.props.uuid)}>+</span>
+        
+        <Content>{this.props.content}</Content>
+        
+        <ActionButton 
+          onClick = {() => window.actions.updateTreeRepresentation(this.props.uuid, "INSERT")}>
+          <DepthIcon>&#8627;</DepthIcon>
+        </ActionButton>
+
+        {this.props.content && 
+          <ActionButton 
+            onClick = {() => window.actions.updateTreeRepresentation(this.props.uuid, "UPDATE")}>
+            <EditIcon>&#9998;</EditIcon>
+          </ActionButton>
+        }
+
+        <ActionButton 
+          onClick = {() => window.actions.updateTreeRepresentation(this.props.uuid, "DELETE")}>
+          -
+        </ActionButton>
+
         {this.state.children}
       </Wrapper>
 		)

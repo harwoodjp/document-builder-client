@@ -1,50 +1,23 @@
 import React from "react"
 
-import Node from "../components/Node"
-import UuidUtil from "../utils/UuidUtil"
-
-function printChildren(node) {
-  const hasChildren = node.children.length > 0
-  if (hasChildren) {
-    node.children.forEach(child => {
-      console.log(child.content)
-      printChildren(child)
-    })
-  }
-}
-
-function findNodeByUuid(parentNode, uuid, action) {
-  if (parentNode.uuid === uuid) {
-    action(parentNode)
-  } else {
-    if (parentNode.children.length > 0) {
-      parentNode.children.forEach(childNode => {
-        findNodeByUuid(childNode, uuid, action)
-      })
-    }
-  }
-}
-
-function findNodeByUuidDos(currentNode, targetUuid, callback) {
+function findNodeByUuid(currentNode, targetUuid, callback) {
   if (currentNode.key === targetUuid) {
     callback(currentNode)
   } else {
     currentNode.children.forEach(childNode => {
-      findNodeByUuidDos(childNode, targetUuid, callback)
+      findNodeByUuid(childNode, targetUuid, callback)
     })
   }
 }
-
-function findNodeParentByUuid(node, uuid, action) {
-  node.children.forEach(child => {
-    if (child.uuid == uuid) {
-      action(node)
-    } 
+function findNodeParentByUuid(currentNode, targetUuid, callback) {
+  currentNode.children.forEach(childNode => {
+    if (childNode.uuid === targetUuid) {
+      callback(currentNode)
+    }
   })
-  node.children.forEach(child => {
-    findNodeParentByUuid(child, uuid, action)
+  currentNode.children.forEach(childNode => {
+    findNodeParentByUuid(childNode, targetUuid, callback)
   })
-
 }
 
 function mapNodeToComponent(node) {
@@ -66,14 +39,6 @@ function mapComponentToNode(component) {
     depth: component.props.depth,
     content: component.props.content,
     children: component.props.children
-  }
-}
-
-function hasChildren(node) {
-  if (node.props.length > 0) {
-    return true
-  } else {
-    return false
   }
 }
 
@@ -106,13 +71,12 @@ function dummyNodeComponent(parentNode) {
 }
 
 module.exports = {
-  printChildren,
   findNodeByUuid,
-  findNodeByUuidDos,  
   findNodeParentByUuid,  
   mapNodeToComponent,
   mapComponentToNode,  
-  hasChildren,
   dummyNode,
   dummyNodeComponent
 }
+
+import Node from "../components/Node"
