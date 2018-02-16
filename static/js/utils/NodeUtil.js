@@ -24,7 +24,6 @@ function mapNodeToComponent(node) {
   return <Node
     key = { node.uuid }
     uuid = { node.uuid }
-    index = { node.index }
     depth = { node.depth }
     content = { node.content }
     children = { node.children }
@@ -35,7 +34,6 @@ function mapComponentToNode(component) {
   return {
     key: component.props.uuid,
     uuid: component.props.uuid,
-    index: component.props.index,
     depth: component.props.depth,
     content: component.props.content,
     children: component.props.children
@@ -49,7 +47,6 @@ function dummyNode(parentNode) {
       dummy: true,
       key: randomUuid,
       uuid: randomUuid,
-      index: parentNode.props.children.length,
       depth: parentNode.props.depth + 1,
       content: "I'm a new node.",
       children: []
@@ -63,7 +60,6 @@ function dummyNodeComponent(parentNode) {
     dummy = { true }
     key = { randomUuid }
     uuid = { randomUuid }
-    index = { parentNode.props.children.length }
     depth = { parentNode.props.depth + 1 }
     content = { "I'm a new node." }
     children = { [] }

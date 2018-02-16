@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import styled from "styled-components"
 
+import TreeUtil from "../utils/TreeUtil"
 import NodeUtil from "../utils/NodeUtil"
 import UuidUtil from "../utils/UuidUtil"
 
@@ -14,58 +15,10 @@ const SaveButton = styled.button`
 `
 
 class Tree extends Component {
-  updateTreeRepresentation(clickedUuid, ACTION_TYPE) {
-    const newTree = JSON.parse(JSON.stringify(NodeUtil.mapComponentToNode(this.state.treeRepresentation)))
-    newTree.uuid = UuidUtil.generateUuid()
-    switch(ACTION_TYPE) {
-      case "INSERT":
-        NodeUtil.findNodeByUuid(newTree, clickedUuid, targetNode => {
-          const randomUuid = UuidUtil.generateUuid()
-          targetNode.children.push({
-            key: randomUuid,
-            uuid: randomUuid,
-            depth: targetNode.depth + 1,
-            content: "I'm a new node.",
-            children: []
-          })
-        })
-        break
-      case "UPDATE":
-        const contentValue = window.prompt("Please type new content value:")
-        NodeUtil.findNodeByUuid(newTree, clickedUuid, targetNode => {
-          if (contentValue.length > 1) {
-            targetNode.content = contentValue
-          }
-        })
-        break
-      case "DELETE":
-      if (newTree.key === clickedUuid) {
-        newTree.children = []
-      } else {
-        NodeUtil.findNodeParentByUuid(newTree, clickedUuid, targetNodeParent => {
-          for (let i = 0; i < targetNodeParent.children.length; i++) {
-            if (targetNodeParent.children[i].uuid === clickedUuid) {
-              targetNodeParent.children.splice(i, 1)
-            }
-          }
-        })  
-      }
-      break
-    }
-    this.setState({
-      treeRepresentation: NodeUtil.mapNodeToComponent(newTree)
-    })
-  }
-
-  saveTreeRepresentation() {
-    const json = JSON.stringify(NodeUtil.mapComponentToNode(this.state.treeRepresentation))
-    console.log(json)
-  }
-
   constructor() {
     super()
     window.actions = {
-      updateTreeRepresentation: this.updateTreeRepresentation.bind(this)
+      updateTreeRepresentation: TreeUtil.updateTreeRepresentation.bind(this)
     }
     this.state = {
       treeRepresentation: null
@@ -81,12 +34,11 @@ class Tree extends Component {
       })
     })
   }
-  componentDidUpdate() {}
 
 	render() {
 		return (
       <Wrapper>
-        <SaveButton onClick={() => {this.saveTreeRepresentation()}}>Save</SaveButton>
+        <SaveButton onClick={() => { TreeUtil.saveTreeRepresentation.bind(this)() }}>Save</SaveButton>
         {this.state.treeRepresentation}
       </Wrapper>
 		)
