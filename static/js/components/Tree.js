@@ -39,14 +39,18 @@ class Tree extends Component {
         })
         break
       case "DELETE":
+      if (newTree.key === clickedUuid) {
+        newTree.children = []
+      } else {
         NodeUtil.findNodeParentByUuid(newTree, clickedUuid, targetNodeParent => {
           for (let i = 0; i < targetNodeParent.children.length; i++) {
             if (targetNodeParent.children[i].uuid === clickedUuid) {
               targetNodeParent.children.splice(i, 1)
             }
           }
-        })
-        break
+        })  
+      }
+      break
     }
     this.setState({
       treeRepresentation: NodeUtil.mapNodeToComponent(newTree)
@@ -54,7 +58,8 @@ class Tree extends Component {
   }
 
   saveTreeRepresentation() {
-    console.log(this.state.treeRepresentation)
+    const json = JSON.stringify(NodeUtil.mapComponentToNode(this.state.treeRepresentation))
+    console.log(json)
   }
 
   constructor() {
@@ -70,7 +75,7 @@ class Tree extends Component {
   componentDidMount() {
     const f = fetch("../static/data/data2.json").then(res => res.text())
     f.then(res => {
-      const tree = JSON.parse(res)[0]
+      const tree = JSON.parse(res)
       this.setState({
         treeRepresentation: NodeUtil.mapNodeToComponent(tree)
       })
