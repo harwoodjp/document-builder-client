@@ -25,6 +25,16 @@ function findNodeByUuid(parentNode, uuid, action) {
   }
 }
 
+function findNodeByUuidDos(currentNode, targetUuid, callback) {
+  if (currentNode.key === targetUuid) {
+    callback(currentNode)
+  } else {
+    currentNode.children.forEach(childNode => {
+      findNodeByUuidDos(childNode, targetUuid, callback)
+    })
+  }
+}
+
 function findNodeParentByUuid(node, uuid, action) {
   node.children.forEach(child => {
     if (child.uuid == uuid) {
@@ -98,6 +108,7 @@ function dummyNodeComponent(parentNode) {
 module.exports = {
   printChildren,
   findNodeByUuid,
+  findNodeByUuidDos,  
   findNodeParentByUuid,  
   mapNodeToComponent,
   mapComponentToNode,  
