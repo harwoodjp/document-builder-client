@@ -12,7 +12,7 @@ function updateTreeRepresentation(clickedUuid, ACTION_TYPE) {
           key: randomUuid,
           uuid: randomUuid,
           depth: targetNode.depth + 1,
-          content: "~",
+          content: ".",
           children: []
         })
       })
